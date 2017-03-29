@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <div class="row" ng-switch="movie.edit">
+    <span ng-switch-default>
+      <h2><strong>{{movie.name}}</strong></h2>
+      <br>
+
+      <br>
+      <p><strong>Description: </strong></p>
+      <p class="col-md-offset-1"><em><small>{{movie.description}}</small></em></p>
+      <p><strong>Stars: </strong></p>
+      <p class="col-md-offset-1"><em><small>{{movie.stars}}</small></em></p>
+      <p><strong>Director: </strong></p>
+      <p class="col-md-offset-1"><em><small>{{movie.director}}</small></em></p>
+      <button class="btn btn-danger" ng-click="ctrl.remove(movie)">Delete</button>
+      <button class="btn btn-primary" ng-click="movie.edit = true">Edit</button>
+    </span>
+    <span ng-switch-when="true">
+      <p><strong>Movie name: </strong></p>
+      <input type="text" class="form-control" ng-model="ctrl.movie.name">&nbsp;
+      <p><strong>Description: </strong></p>
+      <input type="text" class="form-control" ng-model="ctrl.movie.description">&nbsp;
+      <p><strong>Stars: </strong></p>
+      <input type="text" class="form-control" ng-model="ctrl.movie.stars">&nbsp;
+      <p><strong>Director: </strong></p>
+      <input type="text" class="form-control" ng-model="ctrl.movie.director">&nbsp;&nbsp;
+      <button class="btn btn-danger" ng-click="ctrl.remove(movie)">Delete</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+      <button class="btn btn-success" ng-click="movie.edit = false; ctrl.save(movie)">Saved</button>
+    </span>
+  </div>
+</div>

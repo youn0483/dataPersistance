@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="author" content="Brock Young">
+  <meta name="description" content="MTM6430 assignment data persistance">
+  <title>Data Persistence</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+ 
+  <div class="container bg-danger">
+    <h1 class="header text-center"><strong>80's Movies</strong></h1>
+    <div ng-controller="navCtrl as ctrl">
+        
+      <!-- popup -->
+      <div id="addMovieModal" class="modal fade" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content ">
+            <div class="modal-header text-center">
+              <button type="button" class="close" data-dismiss="modal">X</button>
+              <h2 class="modal-title">Add a new 80's Movie</h2> </div>
+             <div class="modal-body  bg-primary text-white">
+              <form ng-submit="ctrl.addMovie(ctrl.newMovie)" role="form" name="addItemForm">
+                <div class="form-group row ">
+                  <label for="addName" class="col-sm-4 col-form-label">Movie name</label>
+                  <div class="col-sm-8">
+                    <input type="text" ng-model="ctrl.newMovie.name" id="addName" class="form-control" placeholder="Enter movie name" required><br></div>
+                  <label for="addImage" class="col-sm-4 col-form-label">Image</label>
+                  <div class="col-sm-8">
+                    <input type="text" ng-model="ctrl.newMovie.image" id="addImage" class="form-control" placeholder="Add Image" required><br></div>
+                  <label for="addImageAlt" class="col-sm-4 col-form-label">Image alt text</label>
+                  <div class="col-sm-8">
+                    <input type="text" ng-model="ctrl.newMovie.imageAlt" id="addImageAlt" class="form-control" placeholder="Add Image alt text"  required><br></div>
+                  <label for="addDesc" class="col-sm-4 col-form-label">Description</label>
+                  <div class="col-sm-8">
+                    <input type="text" ng-model="ctrl.newMovie.description" id="addDesc" class="form-control" placeholder="Enter Description"  required><br></div>
+                  <label for="addStars" class="col-sm-4 col-form-label">Stars</label>
+                  <div class="col-sm-8">
+                    <input type="text" ng-model="ctrl.newMovie.stars" id="addStars" class="form-control" placeholder="Enter star name" required><br></div>
+                  <label for="addDirector" class="col-sm-4 col-form-label">Director</label>
+                  <div class="col-sm-8">
+                    <input type="text" ng-model="ctrl.newMovie.director" id="addDirector" class="form-control" placeholder="Enter director name"  required> </div>
+                </div>
+                <div class="modal-footer">
+                  <input class="btn btn-default" type="submit" value="Add new movie" ng-click="addMovie()" ng-disabled="addItemForm.$invalid">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- popup ends -->
+      
+       <div class="view-container col-md-8 col-md-offset-2 ">
+          <div ng-view class="view"></div>
+        </div>
+        
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 ">
+          <ul class="list-group">
+            <li class="list-group-item btn btn-default" data-toggle="modal" data-target="#addMovieModal"><strong>Add New movie</strong></li> <a ng-repeat="movie in ctrl.data" class="list-group-item btn btn-default" href="/#!/details/{{movie.id}}">
+              {{movie.name}}
+            </a> </ul>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+  <!-- Link to Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <script src="js/app.js"></script>
+  <!-- Link to CUID CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+  
+</body>
+
+</html>
